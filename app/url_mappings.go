@@ -7,8 +7,8 @@ import (
 )
 
 func mapURLs() {
-	router.GET("/ping", ping.ping_controller)
-	router.GET("/", defaultResponse.default_controller)
+	router.GET("/ping", ping.Ping)
+	router.GET("/", defaultResponse.DefaultResponse)
 
 	router.GET("/users/:user_id", users.GetUser)
 	router.POST("/users", users.CreateUser)
