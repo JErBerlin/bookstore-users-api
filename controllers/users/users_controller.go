@@ -15,6 +15,10 @@ func CreateUser(c *gin.Context) {
 	bytes, err := ioutil.ReadAll(c.Request.Body)
 	log.Print(err)
 	fmt.Println(string(bytes))
+	if string(bytes) == "" {
+		bytes = []byte("No info of the user available")
+	}
+	c.String(http.StatusOK, string(bytes))
 }
 
 func GetUser(c *gin.Context) {
