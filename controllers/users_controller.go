@@ -1,7 +1,18 @@
 package controllers
 
-func CreateUser() {}
+import (
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
 
-func GetUser() {}
+func CreateUser(c *gin.Context) {
+	c.String(http.StatusOK, "Hit CreateUser")
+}
 
-func FindUser() {}
+func GetUser(c *gin.Context) {
+	c.String(http.StatusOK, "Hit GetUser")
+}
+
+func SearchUser(c *gin.Context) {
+	c.String(http.StatusOK, "Hit SearchUser")
+}
