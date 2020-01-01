@@ -1,4 +1,4 @@
-package controllers
+package defaultResponse
 
 import (
 	"github.com/gin-gonic/gin"

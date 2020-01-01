@@ -1,14 +1,15 @@
 package app
 
 import (
-	"github.com/JErBerlin/bookstore-users-api/controllers"
+	"github.com/JErBerlin/bookstore_users-api/controllers/defaultResponse"
+	"github.com/JErBerlin/bookstore_users-api/controllers/ping"
+	"github.com/JErBerlin/bookstore_users-api/controllers/users"
 )
 
 func mapURLs() {
-	router.GET("/ping", controllers.Ping)
-	router.GET("/", controllers.DefaultResponse)
+	router.GET("/ping", ping.ping_controller)
+	router.GET("/", DefaultResponse.default_controller)
 
-	router.GET("/users/search", controllers.SearchUser)
-	// router.GET("/users/:user_id", controllers.GetUser)
-	router.POST("/users", controllers.CreateUser)
+	router.GET("/users/:user_id", users.GetUser)
+	router.POST("/users", users.CreateUser)
 }
