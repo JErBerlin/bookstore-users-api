@@ -1,9 +1,9 @@
 package app
 
 import (
-	"github.com/JErBerlin/bookstore_users-api/controllers/defaultResponse"
-	"github.com/JErBerlin/bookstore_users-api/controllers/ping"
-	"github.com/JErBerlin/bookstore_users-api/controllers/users"
+	"github.com/JErBerlin/bookstore-users-api/controllers/defaultResponse"
+	"github.com/JErBerlin/bookstore-users-api/controllers/ping"
+	"github.com/JErBerlin/bookstore-users-api/controllers/users"
 )
 
 func mapURLs() {
