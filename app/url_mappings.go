@@ -9,6 +9,6 @@ func mapURLs() {
 	router.GET("/", controllers.DefaultResponse)
 
 	router.GET("/users/search", controllers.SearchUser)
-	router.GET("/users/:user_id", controllers.GetUser)
+	// router.GET("/users/:user_id", controllers.GetUser)
 	router.POST("/users", controllers.CreateUser)
 }

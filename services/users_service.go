@@ -2,6 +2,6 @@ package services
 
 func CreateUser() {}
 
-func GetUser() {}
+// func GetUser() {}
 
-func FindUser() {}
+func SearchUser() {}
