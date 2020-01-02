@@ -23,6 +23,10 @@ func CreateUser(c *gin.Context) {
 		c.String(http.StatusUnprocessableEntity, string(bytes))
 		return
 	}
+	if user == users.NewUser(0, "", "", "", "") {
+		c.String(http.StatusUnprocessableEntity, string(bytes))
+		return
+	}
 	c.String(http.StatusOK, fmt.Sprintf("%#v", user))
 }
 
