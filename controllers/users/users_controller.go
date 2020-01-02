@@ -2,6 +2,7 @@ package users
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/JErBerlin/bookstore-users-api/domain/users"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
@@ -22,7 +23,7 @@ func CreateUser(c *gin.Context) {
 		c.String(http.StatusUnprocessableEntity, string(bytes))
 		return
 	}
-	c.String(http.StatusOK, string(user))
+	c.String(http.StatusOK, fmt.Sprintf("%#v", user))
 }
 
 func GetUser(c *gin.Context) {
