@@ -1,7 +1,7 @@
 package users
 
 import (
-	"fmt"
+	"encoding/json"
 	"github.com/JErBerlin/bookstore-users-api/domain/users"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
@@ -11,12 +11,16 @@ import (
 
 func CreateUser(c *gin.Context) {
 	var user users.User
-	fmt.Println(user)
 	bytes, err := ioutil.ReadAll(c.Request.Body)
-	log.Print(err)
-	fmt.Println(string(bytes))
-	if string(bytes) == "" {
-		bytes = []byte("No info of the user available")
+	if err != nil {
+		log.Print(err)
+		c.String(http.StatusBadRequest, string(bytes))
+		return
+	}
+	if err = json.Unmarshal(bytes, user); err != nil {
+		log.Print(err)
+		c.String(http.StatusUnprocessableEntity, string(bytes))
+		return
 	}
 	c.String(http.StatusOK, string(bytes))
 }
@@ -24,9 +28,3 @@ func CreateUser(c *gin.Context) {
 func GetUser(c *gin.Context) {
 	c.String(http.StatusNotImplemented, "Hit GetUser")
 }
-
-/*
-func SearchUser(c *gin.Context) {
-	c.String(http.StatusNotImplemented, "Hit SearchUser")
-}
-*/
