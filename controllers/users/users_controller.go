@@ -22,7 +22,7 @@ func CreateUser(c *gin.Context) {
 		c.String(http.StatusUnprocessableEntity, string(bytes))
 		return
 	}
-	c.String(http.StatusOK, string(bytes))
+	c.String(http.StatusOK, string(user))
 }
 
 func GetUser(c *gin.Context) {
