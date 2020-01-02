@@ -17,7 +17,7 @@ func CreateUser(c *gin.Context) {
 		c.String(http.StatusBadRequest, string(bytes))
 		return
 	}
-	if err = json.Unmarshal(bytes, user); err != nil {
+	if err = json.Unmarshal(bytes, &user); err != nil {
 		log.Print(err)
 		c.String(http.StatusUnprocessableEntity, string(bytes))
 		return
