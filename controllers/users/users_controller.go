@@ -19,10 +19,6 @@ func CreateUser(c *gin.Context) {
 		c.JSON(restErr.Status, restErr)
 		return
 	}
-	if user == *users.NewUser(0, "", "", "", "") {
-		c.String(http.StatusUnprocessableEntity, string(bytes))
-		return
-	}
 
 	result, saveErr := services.CreateUser(user)
 	if saveErr != nil {
