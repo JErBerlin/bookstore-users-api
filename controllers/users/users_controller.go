@@ -1,33 +1,35 @@
 package users
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/JErBerlin/bookstore-users-api/domain/users"
+	"github.com/JErBerlin/bookstore-users-api/services"
+	"github.com/JErBerlin/bookstore-users-api/utils/errors"
 	"github.com/gin-gonic/gin"
-	"io/ioutil"
-	"log"
 	"net/http"
 )
 
 func CreateUser(c *gin.Context) {
 	var user users.User
-	bytes, err := ioutil.ReadAll(c.Request.Body)
-	if err != nil {
-		log.Print(err)
-		c.String(http.StatusBadRequest, string(bytes))
-		return
-	}
-	if err = json.Unmarshal(bytes, &user); err != nil {
-		log.Print(err)
-		c.String(http.StatusUnprocessableEntity, string(bytes))
+	if err := c.ShouldBindJSON(&user); err != nil {
+		restErr := errors.RestErr{
+			Message: "invali json body",
+			Status:  http.StatusBadRequest,
+			Error:   "bad_request",
+		}
+		c.JSON(restErr.Status, restErr)
 		return
 	}
 	if user == *users.NewUser(0, "", "", "", "") {
 		c.String(http.StatusUnprocessableEntity, string(bytes))
 		return
 	}
-	c.String(http.StatusOK, fmt.Sprintf("%#v", user))
+
+	result, saveErr := services.CreateUser(user)
+	if saveErr != nil {
+		c.JSON(saveErr.Status, saveErr)
+		return
+	}
+	c.JSON(http.StatusCreated, result)
 }
 
 func GetUser(c *gin.Context) {
